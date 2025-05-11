@@ -18,7 +18,6 @@ if not os.path.exists(UPLOAD_DIR):
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://68208ad7f162b6574cac4c87--music-app-np.netlify.app",
         "https://music-app-np.netlify.app"  # Thêm domain chính
     ],
     allow_credentials=True,
