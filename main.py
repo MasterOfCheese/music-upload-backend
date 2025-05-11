@@ -68,6 +68,7 @@ async def delete_file(filename: str, x_api_key: str = Header(...)):
     return JSONResponse(content={"message": f"File {filename} deleted successfully"})
 
 # Route đơn giản để giữ app luôn "thức" (dùng cho UptimeRobot)
-@app.get("/ping")
+@app.api_route("/ping", methods=["GET", "HEAD"])
 async def ping():
     return {"status": "ok"}
+
