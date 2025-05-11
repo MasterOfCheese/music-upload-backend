@@ -4,6 +4,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import shutil
+from dotenv import load_dotenv
+
+# Load biến môi trường từ file .env
+load_dotenv()
 
 app = FastAPI()
 
@@ -21,8 +25,10 @@ app.add_middleware(
 
 app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
-# API Key để xác thực
-API_KEY = "856c2a7d-7943-4706-a6e1-ab1a4f561bfb"
+# Đọc API_KEY từ file .env
+API_KEY = os.getenv("API_KEY")
+if not API_KEY:
+    raise ValueError("API_KEY not found in .env file")
 
 # Hàm kiểm tra API Key
 def verify_api_key(x_api_key: str = Header(...)):
