@@ -66,3 +66,8 @@ async def delete_file(filename: str, x_api_key: str = Header(...)):
         raise HTTPException(status_code=404, detail="File not found")
     os.remove(file_path)
     return JSONResponse(content={"message": f"File {filename} deleted successfully"})
+
+# Route đơn giản để giữ app luôn "thức" (dùng cho UptimeRobot)
+@app.get("/ping")
+async def ping():
+    return {"status": "ok"}
